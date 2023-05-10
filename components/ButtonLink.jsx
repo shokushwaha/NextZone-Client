@@ -1,7 +1,7 @@
-import styled from "styled-components"
+import Link from "next/link";
+import styled from "styled-components";
 import css from "styled-jsx/css";
-
-const StyledButton = styled.button`
+const StyledLink = styled(Link)`
 border: none;
 padding: 8px 10px;
 border-radius: 4px;
@@ -25,13 +25,12 @@ ${props => props.white && props.outlined && css`
      color: #000;
     
 `}
-
 `;
 
-export default function Button({ children, ...rest }) {
+export default function ButtonLink(props) {
     return (
-        <>
-            <StyledButton {...rest}>{children}</StyledButton>
-        </>
+        <div>
+            <StyledLink {...props} />
+        </div>
     )
 }
