@@ -22,16 +22,24 @@ ${props => props.white && props.outlined && css`
     
     ${props => props.primary && css`
     background-color: skyblue;
+    border: 2px solid skyblue;
      color: #000;
+     :hover{
+      background-color:transparent;
+      color:skyblue;
+      border:2px solid skyblue;
+      box-shadow: 0px 0px 10px skyblue;
+      
+     }
     
 `}
 
 `;
 
 export default function Button({ children, ...rest }) {
-    return (
-        <>
-            <StyledButton {...rest}>{children}</StyledButton>
-        </>
-    )
+  return (
+    <>
+      <StyledButton {...rest}>{children}</StyledButton>
+    </>
+  )
 }

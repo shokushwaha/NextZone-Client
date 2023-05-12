@@ -8,6 +8,7 @@ const Image = styled.img`
 const BigImage = styled.img`
   width: 20 0px;
   height: 150px;
+  margin: 0px auto;
 `;
 const ImageButtons = styled.div`
     display: flex;
@@ -16,7 +17,6 @@ const ImageButtons = styled.div`
     margin-top: 10px;
   `;
 const ImageButton = styled.div`
-    border: 2px solid #ccc;
     ${props => props.active ? `
       border-color: #ccc;
     ` : `
@@ -26,28 +26,29 @@ const ImageButton = styled.div`
     padding: 2px;
     cursor: pointer;
     border-radius: 5px;
+    flex-wrap:wrap;
   `;
 const BigImageWrapper = styled.div`
   text-align: center;
 `;
 
 export default function ProductImages({ images }) {
-    const [activeImage, setActiveImage] = useState(images?.[0]);
-    return (
-        <>
-            <BigImageWrapper>
-                <BigImage src={activeImage} />
-            </BigImageWrapper>
-            <ImageButtons>
-                {images.map(image => (
-                    <ImageButton
-                        key={image}
-                        active={image === activeImage}
-                        onClick={() => setActiveImage(image)}>
-                        <Image src={image} alt="" />
-                    </ImageButton>
-                ))}
-            </ImageButtons>
-        </>
-    );
+  const [activeImage, setActiveImage] = useState(images?.[0]);
+  return (
+    <>
+      <BigImageWrapper>
+        <BigImage src={activeImage} />
+      </BigImageWrapper>
+      <ImageButtons>
+        {images.map(image => (
+          <ImageButton
+            key={image}
+            active={image === activeImage}
+            onClick={() => setActiveImage(image)}>
+            <Image src={image} alt="" />
+          </ImageButton>
+        ))}
+      </ImageButtons>
+    </>
+  );
 }

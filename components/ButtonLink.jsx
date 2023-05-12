@@ -14,7 +14,6 @@ display: inline-flex;
   }
 ${props => props.white && props.outlined && css`
     color: #fff;
-   
     border:2px solid white;
 
     `}
@@ -25,12 +24,17 @@ ${props => props.white && props.outlined && css`
      color: #000;
     
 `}
+
+:hover{
+  background-color:#fff;
+  color:black;
+}
 `;
 
 export default function ButtonLink(props) {
-    return (
-        <div>
-            <StyledLink {...props} />
-        </div>
-    )
+  return (
+    <div>
+      <StyledLink {...props} />
+    </div>
+  )
 }

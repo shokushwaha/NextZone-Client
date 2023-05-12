@@ -86,7 +86,16 @@ const CityHolder = styled.div`
 display: flex;
 gap:10px;
 `;
+const ClearButton = styled.button`
+background-color: #ff8080;
+padding: 2px 8px;
+border-radius: 4px;
+:hover{
+    background-color: #ff3333;
+    box-shadow  :0px 0px 4px #ff3333 ;
+}
 
+`;
 export default function CartPage() {
     const { cartProducts, addProduct, removeProduct, clearCart } = useContext(CartContext);
     const [products, setProducts] = useState([]);
@@ -121,6 +130,11 @@ export default function CartPage() {
     }
     const lessOfThisProduct = (id) => {
         removeProduct(id);
+    }
+
+    const clearAll = () => {
+        clearCart();
+        setProducts([]);
     }
 
     const goToPayment = async () => {
@@ -224,7 +238,11 @@ export default function CartPage() {
                                         )
                                         }
                                         <tr>
-                                            <td></td>
+                                            <td>
+                                                <ClearButton onClick={clearAll}>
+                                                    Clear Cart
+                                                </ClearButton>
+                                            </td>
                                             <td></td>
                                             <td>${total}</td>
                                         </tr>
