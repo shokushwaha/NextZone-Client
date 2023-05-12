@@ -6,6 +6,9 @@ import { CartContext } from './CartContext';
 
 const StyledHeader = styled.header`
     background-color: #222;
+position: sticky;
+  top: 0;
+ 
 
 `;
 
@@ -43,7 +46,7 @@ export default function Header() {
 
                         <StyledNav>
                             <NavLink href={'/'}>Home</NavLink>
-                            <NavLink href={'/'}>All Products</NavLink>
+                            <NavLink href={'/products'}>All Products</NavLink>
                             <NavLink href={'/'}>Categories</NavLink>
                             <NavLink href={'/'}>Account</NavLink>
                             <NavLink href={'/cart'}>Cart ({cartProducts.length})</NavLink>

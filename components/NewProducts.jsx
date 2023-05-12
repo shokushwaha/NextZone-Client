@@ -8,7 +8,7 @@ display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
 gap: 30px;
 padding-top: 30px;
-padding-bottom: 40px;
+padding-bottom: 20px;
 `;
 const StyledTitle = styled.div`
 font-weight: 900;
