@@ -1,9 +1,10 @@
-import Image from "next/image";
 import Center from "./Center";
 import styled from "styled-components";
 import Button from "./Button";
 import ButtonLink from "./ButtonLink";
-
+import CartIcon from "./icons/CartIcon";
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
 const Bg = styled.div`
 color: #fff;
 background-color: #222;
@@ -13,6 +14,9 @@ padding: 50px 0px;
 const Title = styled.h1`
   margin:0;
   font-weight  :normal  ;
+  font-size: 2rem;
+  text-transform: uppercase;
+  padding: 10px 0px;
 `;
 
 const Desc = styled.p`
@@ -41,7 +45,25 @@ gap: 10px;
 margin-top: 20px;
 `;
 
+const StyledImage = styled.img`
+border-radius: 4px;
+box-shadow: 0px 10px 10px gray;
+transition: all;
+transition-duration: 200ms;
+:hover{
+    transform: translateY(-4px);
+    transform: scale(1.1);
+}
+`;
+
 export default function Featured({ product }) {
+
+
+    const { addProduct } = useContext(CartContext);
+    const addFeaturedToCart = () => {
+        addProduct(product._id);
+    }
+
     return (
         <>
             <Bg>
@@ -55,25 +77,18 @@ export default function Featured({ product }) {
                                 <Title>{product.title}</Title>
                                 <Desc>{product.description}</Desc>
                                 <ButtonWrapper>
-                                    <ButtonLink white outlined size="l" href={'/products/' + product._id}>
-
-
+                                    <ButtonLink white outlined href={'/products/' + product._id}>
                                         Read More</ButtonLink>
-                                    <Button primary size="l" >
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                                        </svg>
+                                    <Button primary size="l" onClick={addFeaturedToCart} >
+                                        <CartIcon />
                                         Add To Cart</Button>
                                 </ButtonWrapper>
                             </div>
 
                         </Column>
                         <Column>
-                            <Image
-                                src="./public/next.svg"
-                                width={200}
-                                height={200}
-                                alt="Image" />
+
+                            <StyledImage src="https://res.cloudinary.com/dt21djrjq/image/upload/v1683804256/mah5bgotqqq4szpxhos6.jpg" alt="featured image" />
 
 
                         </Column>
