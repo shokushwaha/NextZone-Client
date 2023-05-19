@@ -27,12 +27,16 @@ The application will be running on http://localhost:3000.
 To run the unit tests, run the following command in the root directory:
 
 npm test
+![Screenshot 2023-05-19 184654](https://github.com/shokushwaha/ecom-client/assets/109756367/03a823bf-fdf8-45db-9c16-bfde0e9a9dee)
+![Screenshot 2023-05-19 184706](https://github.com/shokushwaha/ecom-client/assets/109756367/d1982d10-3a9b-49e0-b760-fccbd0449432)
 
 ##Screenshots![Screenshot 2023-05-12 214047](https://github.com/shokushwaha/ecom-client/assets/109756367/80c31c21-72e3-4385-bb4b-118e809b420e)
 
 ![Screenshot 2023-05-12 214106](https://github.com/shokushwaha/ecom-client/assets/109756367/e60a0356-e22f-456c-94b5-103bfa64720d)
 
+![Screenshot 2023-05-19 184751](https://github.com/shokushwaha/ecom-client/assets/109756367/42df1420-0b5a-452a-bc3f-91d7208b9ec9)
 
+![Screenshot 2023-05-19 184800](https://github.com/shokushwaha/ecom-client/assets/109756367/505d79c5-b25a-4ba1-8a9b-0994fb13eddf)
 
 ![Screenshot 2023-05-12 214202](https://github.com/shokushwaha/ecom-client/assets/109756367/5bb9521e-e5b9-4975-a86b-1557fa27e3aa)
 
