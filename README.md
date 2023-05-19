@@ -35,8 +35,7 @@ npm test
 ![Screenshot 2023-05-12 214106](https://github.com/shokushwaha/ecom-client/assets/109756367/e60a0356-e22f-456c-94b5-103bfa64720d)
 
 ![Screenshot 2023-05-19 184751](https://github.com/shokushwaha/ecom-client/assets/109756367/42df1420-0b5a-452a-bc3f-91d7208b9ec9)
-
-![Screenshot 2023-05-19 184800](https://github.com/shokushwaha/ecom-client/assets/109756367/505d79c5-b25a-4ba1-8a9b-0994fb13eddf)
+![Screenshot 2023-05-19 184819](https://github.com/shokushwaha/ecom-client/assets/109756367/9b553a68-6984-4d8e-b13b-fbfc640fcf97)
 
 ![Screenshot 2023-05-12 214202](https://github.com/shokushwaha/ecom-client/assets/109756367/5bb9521e-e5b9-4975-a86b-1557fa27e3aa)
 
