@@ -1,28 +1,54 @@
+import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext({});
 export function CartContextProvider({ children }) {
+
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedInUser, setLoggedInUser] = useState({});
     const ls = typeof window !== 'undefined' ? window.localStorage : null;
 
     const [cartProducts, setCartProducts] = useState([]);
 
+
+    let id = loggedInUser?.data?._id;
     useEffect(() => {
         if (cartProducts?.length > 0) {
             ls?.setItem('cart', JSON.stringify(cartProducts));
         }
+
     }, [cartProducts]);
 
+    const cart = loggedInUser?.data?.cart;
+
     useEffect(() => {
+
+
+
         if (ls && ls.getItem('cart')) {
 
             setCartProducts(JSON.parse(ls.getItem('cart')));
         }
-    }, []);
+        for (const i in cart) {
+            if (!cartProducts.includes(i))
+                cartProducts.push(i);
+        }
+    }, [])
 
-    function addProduct(productId) {
+    async function addProduct(productId) {
+        await axios.post('/api/addtocart', {
+            id
+            , productId
+        });
         setCartProducts(prev => [...prev, productId]);
+
+
     }
-    function removeProduct(productId) {
+    async function removeProduct(productId) {
+        await axios.post('/api/removefromcart', {
+            id
+            , productId
+        });
         setCartProducts(prev => {
             const pos = prev.indexOf(productId);
             if (pos !== -1) {
@@ -31,12 +57,15 @@ export function CartContextProvider({ children }) {
             return prev;
         })
     }
-    function clearCart() {
+
+    async function clearCart() {
+        await axios.post('/api/clearcart', { id });
         setCartProducts([]);
     }
 
+
     return (
-        <CartContext.Provider value={{ cartProducts, setCartProducts, addProduct, removeProduct, clearCart }}>
+        <CartContext.Provider value={{ loggedIn, setLoggedIn, loggedInUser, setLoggedInUser, cartProducts, setCartProducts, addProduct, removeProduct, clearCart }}>
             {children}
         </CartContext.Provider>
     );

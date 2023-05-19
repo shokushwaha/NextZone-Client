@@ -97,7 +97,8 @@ border-radius: 4px;
 
 `;
 export default function CartPage() {
-    const { cartProducts, addProduct, removeProduct, clearCart } = useContext(CartContext);
+
+    const { loggedInUser, cartProducts, addProduct, removeProduct, clearCart } = useContext(CartContext);
     const [products, setProducts] = useState([]);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -136,8 +137,10 @@ export default function CartPage() {
         clearCart();
         setProducts([]);
     }
-
+    let id = loggedInUser.data._id;
     const goToPayment = async () => {
+        await axios.post('/api/order', { id, cartProducts });
+
         const response = await axios.post('/api/checkout', {
             name, email, city, postalCode, streetAddress, country,
             cartProducts,

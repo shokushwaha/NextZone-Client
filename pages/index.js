@@ -1,12 +1,16 @@
+import { CartContext } from '@/components/CartContext';
 import Featured from '@/components/Featured'
 import Header from '@/components/Header'
 import NewProducts from '@/components/NewProducts';
+import PleaseLogin from '@/components/PleaseLogin';
 import { mongooseConnect } from '@/lib/mongoose';
 import { Product } from '@/models/Product';
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect, useContext } from 'react';
 
 export default function Home({ featuredProduct, newProducts }) {
+  const { loggedIn } = useContext(CartContext);
+  console.log(loggedIn);
+
   function MyMobileComponent() {
     return <h1 className="flex justify-center items-center min-h-screen min-w-screen bg-bgPrimary text-black " >Sorry this website can only be accessed by Desktop</h1>
   }
@@ -24,9 +28,17 @@ export default function Home({ featuredProduct, newProducts }) {
   if (!isDesktop) return <MyMobileComponent />
   return (
     <>
-      <Header />
-      <Featured product={featuredProduct} />
-      <NewProducts products={newProducts} />
+      {loggedIn ?
+        <>
+          <Header />
+          <Featured product={featuredProduct} />
+          <NewProducts products={newProducts} />
+        </>
+        :
+        <>
+          <PleaseLogin />
+        </>
+      }
     </>
   )
 }
