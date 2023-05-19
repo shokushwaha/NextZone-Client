@@ -137,7 +137,7 @@ export default function CartPage() {
         clearCart();
         setProducts([]);
     }
-    let id = loggedInUser.data._id;
+    let id = loggedInUser?.data?._id;
     const goToPayment = async () => {
         await axios.post('/api/order', { id, cartProducts });
 

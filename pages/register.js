@@ -82,7 +82,7 @@ export default function Register() {
                                     Password
 
                                 </label>
-                                <input type="text" placeholder='Password' value={password} onChange={e => setPassword(e.target.value)} className='px-4 py-1 rounded-md border-b-2 border-blue-200 shadow' />
+                                <input type="password" placeholder='Password' value={password} onChange={e => setPassword(e.target.value)} className='px-4 py-1 rounded-md border-b-2 border-blue-200 shadow' />
 
                             </div>
 
