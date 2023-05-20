@@ -4,6 +4,34 @@ import React, { useState } from 'react'
 import Link from 'next/link';
 import { Toaster, toast } from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import styled from 'styled-components';
+const StyledButton = styled.button`
+width: 100%;
+background-color: skyBlue;
+color:black;
+border:1px solid skyBlue;
+padding: 4px 15px;
+border-radius: 4px;
+transition: all;
+transition-duration: 200ms;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-top: 10px;
+:hover{
+  background-color: #32cd32;
+  color: white;
+  border:1px solid #32cd32;
+    transform: scale(1.1);
+    svg{
+        display: flex;
+      width: 100px;
+    }
+    span{
+        display: none;
+    }
+}
+`;
 export default function Register() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -111,7 +139,14 @@ export default function Register() {
                                 <input type="text" placeholder='Address' value={address} onChange={e => setAddress(e.target.value)} className='px-4 py-1 rounded-md border-b-2 border-blue-200 shadow' />
 
                             </div>
-                            <button type='submit' className='bg-blue-200 px-4 py-1 rounded-md hover:bg-blue-400 mt-2 w-full text-center' >Register</button>
+                            <StyledButton type='submit'  >
+                                <span>
+                                    Register
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 hidden">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </StyledButton>
 
                         </form>
                         <div className='flex flex-col'>

@@ -33,6 +33,7 @@ export default function Home({ featuredProduct, newProducts }) {
           <Header />
           <Featured product={featuredProduct} />
           <NewProducts products={newProducts} />
+
         </>
         :
         <>
