@@ -11,7 +11,8 @@ export default async function handler(req, res) {
     await mongooseConnect();
     const { method } = req;
     // const {loggedInUser}=useContext(CartContext);
-
+    console.log(req.body.id)
+    console.log(req.body.productId);
     if (method === "POST") {
 
         await Client.updateOne({ _id: req.body.id }, {

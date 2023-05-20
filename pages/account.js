@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 export default function Account() {
-    const { loggedInUser, setLoggedInUser, setLoggedIn } = useContext(CartContext);
+    const { loggedInUser, setLoggedInUser, setLoggedIn, cartProducts, setCartProducts } = useContext(CartContext);
     const [id, setId] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -23,6 +23,13 @@ export default function Account() {
             setPhoneNum(loggedInUser?.data?.phoneNum);
             setAddress(loggedInUser?.data?.address);
             setOrders(loggedInUser?.data?.orders);
+
+            const temp = loggedInUser?.data?.cart;
+            for (let i = 0; temp && i < temp.length; i++) {
+                if (!cartProducts.includes(temp[i]))
+                    setCartProducts(prev => [...prev, temp[i]])
+            }
+
         }
     }, [])
 
