@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 export default function Account() {
-    const { loggedInUser, setLoggedIn } = useContext(CartContext);
+    const { loggedInUser, setLoggedInUser, setLoggedIn } = useContext(CartContext);
     const [id, setId] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -15,12 +15,15 @@ export default function Account() {
     const router = useRouter();
 
     useEffect(() => {
-        setId(loggedInUser?.data._id)
-        setName(loggedInUser?.data.name);
-        setEmail(loggedInUser?.data.email);
-        setPhoneNum(loggedInUser?.data.phoneNum);
-        setAddress(loggedInUser?.data.address);
-        setOrders(loggedInUser?.data.orders);
+        setLoggedInUser(JSON.parse(localStorage.getItem('loggedInUser')))
+        if (loggedInUser) {
+            setId(loggedInUser?.data?._id)
+            setName(loggedInUser?.data?.name);
+            setEmail(loggedInUser?.data?.email);
+            setPhoneNum(loggedInUser?.data?.phoneNum);
+            setAddress(loggedInUser?.data?.address);
+            setOrders(loggedInUser?.data?.orders);
+        }
     }, [])
 
 
@@ -38,18 +41,21 @@ export default function Account() {
         axios.post('/api/cart', { ids: orders }).then(response => {
             console.log(response.data)
             setOrderArr(response.data)
+            setShowOrderButton(true)
         });
     }
 
 
 
     const [editButtonClicked, setEditButtonClicked] = useState(false);
-
-    const updateUser = async () => {
+    const [showOrderButton, setShowOrderButton] = useState(false);
+    const updateUser = async (e) => {
+        e.preventDefault();
         await axios.post('/api/updateuser', { id, name, email, phoneNum, address });
-        router.push('/login')
+
         setEditButtonClicked(false);
     }
+
 
     return (
         <>
@@ -111,7 +117,8 @@ export default function Account() {
                             <div>
                                 <button className='bg-red-400 rounded-md w-full text-center hover:bg-red-500 px-4 py-1 shadow ' onClick={() => {
                                     setLoggedIn(false)
-
+                                    localStorage.removeItem('loggedIn');
+                                    localStorage.removeItem('loggedInUser');
                                     router.push("/login")
                                 }}  >LogOut</button>
                             </div>
@@ -159,46 +166,76 @@ export default function Account() {
                         </h1>
 
                         {
-                            orders.length === 0 ? <>
+                            orders && orders.length === 0 ? <>
                                 <div className='text-gray-600'>
                                     You haven&apos;t ordered any items yet
                                 </div>
                             </> : <>
                                 <div className='flex flex-col gap-2'>
-                                    You have ordered {orders.length} items in past
-                                    <button onClick={showOrders} className='bg-green-400 rounded-md hover:bg-green-500 px-4 py-1'>Show Orders</button>
+
+
+                                    {
+                                        showOrderButton ?
+
+                                            <>
+                                                <h1 className='text-gray-800'>You have ordered these items in the past</h1>
+                                                <button onClick={() => setShowOrderButton(false)} className=' bg-sky-400 w-full rounded-md px-4 py-1 hover:cursor-pointer' >Close List</button>
+
+                                            </>
+
+                                            :
+                                            <>
+                                                <h1 className='text-gray-800'>
+                                                    Get past orders
+                                                </h1>
+                                                <button onClick={showOrders} className='bg-green-400 rounded-md hover:bg-green-500 px-4 py-1'>Show Orders</button>
+                                            </>
+                                    }
+
                                 </div>
-                                {orderArr.length > 0 && orderArr.map(order => (
+
+
+                                {showOrderButton ?
                                     <>
-                                        <div className='flex gap-4 border-b-2 border-gray-400 px-4 py-2 mb-8'>
-                                            <div>
-                                                <img src={order.images[0]} alt="image" className='w-40 ' />
-                                            </div>
-                                            <div className='flex flex-col gap-2'>
 
-                                                <span>
-                                                    <span className='text-gray-600' >
-                                                        Name: &nbsp;
-                                                    </span>
-                                                    {order.title}
-                                                </span>
+                                        {
+                                            orderArr.length > 0 && orderArr.map(order => (
+                                                <>
+                                                    <div
+                                                        key={order._id}
+                                                        className='flex gap-4 border-b-2 border-gray-400 px-4 py-2 mb-8'>
+                                                        <div>
+                                                            <img src={order.images[0]} alt="image" className='w-40 ' />
+                                                        </div>
+                                                        <div className='flex flex-col gap-2'>
 
-                                                <span>
-                                                    <span className='text-gray-600' >
-                                                        Price: &nbsp;
-                                                    </span>
-                                                    {order.price}
-                                                </span>
-                                                <span>
-                                                    <span className='text-gray-600' >
-                                                        Ordered on: &nbsp;
-                                                    </span>
-                                                    {order.updatedAt.substring(0, 10)}
-                                                </span>
-                                            </div>
-                                        </div>
+                                                            <span>
+                                                                <span className='text-gray-600' >
+                                                                    Name: &nbsp;
+                                                                </span>
+                                                                {order.title}
+                                                            </span>
+
+                                                            <span>
+                                                                <span className='text-gray-600' >
+                                                                    Price: &nbsp;
+                                                                </span>
+                                                                {order.price}
+                                                            </span>
+                                                            <span>
+                                                                <span className='text-gray-600' >
+                                                                    Ordered on: &nbsp;
+                                                                </span>
+                                                                {order.updatedAt.substring(0, 10)}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            ))
+                                        }
                                     </>
-                                ))}
+                                    : null}
+
                             </>
                         }
                     </div>

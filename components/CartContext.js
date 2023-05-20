@@ -16,6 +16,16 @@ export function CartContextProvider({ children }) {
         if (cartProducts?.length > 0) {
             ls?.setItem('cart', JSON.stringify(cartProducts));
         }
+        if (ls) {
+            const str = JSON.parse(ls.getItem('loggedIn'))
+            if (str === 'true')
+                setLoggedIn(true);
+        }
+        if (ls) {
+            const user = JSON.parse(ls.getItem('loggedInUser'))
+            setLoggedInUser(user);
+        }
+
 
     }, [cartProducts]);
 

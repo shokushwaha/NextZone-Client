@@ -26,6 +26,8 @@ export default function Login() {
       if (res) {
         toast.success("Logged In")
         setLoggedIn(true);
+        localStorage.setItem('loggedIn', JSON.stringify('true'));
+        localStorage.setItem('loggedInUser', JSON.stringify(res))
         setLoggedInUser(res);
         router.push('/');
 
@@ -56,8 +58,8 @@ export default function Login() {
           </div>
           <div className='flex flex-col gap-8'>
 
-            <form onSubmit={handleLogin} className='flex flex-col '>
-              <h1 className='text-4xl pb-4'>Login</h1>
+            <form onSubmit={handleLogin} className='flex flex-col px-8'>
+              <h1 className='text-4xl pb-4 uppercase'>Login</h1>
               <div className='flex flex-col gap-1 mb-2'>
 
                 <label className='flex gap-1 items-center justify-start'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -79,7 +81,7 @@ export default function Login() {
               </div>
               <button type='submit' className='bg-blue-200 px-4 py-1 rounded-md hover:bg-blue-400 mt-2'>Login</button>
             </form>
-            <div className='flex flex-col'>
+            <div className='flex flex-col px-8'>
               New to NextZone?
               <Link href={'/register'} className='text-blue-600 '>
                 Regiter here!

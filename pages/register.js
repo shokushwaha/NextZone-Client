@@ -43,11 +43,11 @@ export default function Register() {
                         </svg>
 
                     </div>
-                    <div className='flex flex-col gap-8'>
+                    <div className='flex flex-col gap-8 px-8'>
 
 
                         <form onSubmit={handleRegister}>
-                            <h1 className='text-4xl pb-4'>Register</h1>
+                            <h1 className='text-4xl pb-4 uppercase'>Register</h1>
                             <div className='flex flex-col gap-1 mb-2'>
                                 <label className='flex gap-1 items-center justify-start' >
 
