@@ -6,6 +6,7 @@ import styled from "styled-components";
 import axios from "axios";
 import Input from "@/components/Input";
 import Link from "next/link";
+import { motion } from "framer-motion";
 const ColumnsWrapper = styled.div`
 display: grid;
 grid-template-columns: 1.2fr 0.8fr;
@@ -188,138 +189,147 @@ export default function CartPage() {
         <>
             <Header />
             <Center>
+                <motion.div
+                    className="container text-center"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1, delay: 0.5 }}
 
-                <ColumnsWrapper>
-                    <Box>
-                        <h2>Cart</h2>
-                        {!cartProducts?.length && (
-                            <>
-                                <div>
-                                    Your cart is empty
-                                </div>
+                >
 
-                            </>
-                        )}
-                        {
-                            products?.length > 0 && (
-                                <StyledTable>
-                                    <thead>
-                                        <tr>
-
-                                            <th>Product</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-
-
-                                        {products.map(product => (
-                                            <>
-                                                <tr key={product._id}>
-                                                    <ProductCell>
-
-                                                        <td>
-                                                            <img src={product.images[0]} alt="image" />
-                                                        </td>
-                                                        <td>    {product.title}</td>
-                                                    </ProductCell>
-                                                    <td >
-
-
-                                                        <QuantityButton onClick={() => lessOfThisProduct(product._id)} >-</QuantityButton>
-                                                        {cartProducts.filter(id => id === product._id).length}
-                                                        <QuantityButton onClick={() => moreOfThisProduct(product._id)}>+</QuantityButton>
-                                                    </td>
-                                                    <td>${cartProducts.filter(id => id === product._id).length * product.price}</td>
-
-                                                </tr>
-
-                                            </>
-                                        )
-                                        )
-                                        }
-                                        <tr>
-                                            <td>
-                                                <ClearButton onClick={clearAll}>
-                                                    Clear Cart
-                                                </ClearButton>
-                                            </td>
-                                            <td></td>
-                                            <td>${total}</td>
-                                        </tr>
-
-
-                                    </tbody>
-                                </StyledTable>
-                            )
-                        }
-                    </Box>
-
-                    {!!cartProducts?.length && (
+                    <ColumnsWrapper>
                         <Box>
-                            <h2>Order Information</h2>
+                            <h2>Cart</h2>
+                            {!cartProducts?.length && (
+                                <>
+                                    <div>
+                                        Your cart is empty
+                                    </div>
+
+                                </>
+                            )}
+                            {
+                                products?.length > 0 && (
+                                    <StyledTable>
+                                        <thead>
+                                            <tr>
+
+                                                <th>Product</th>
+                                                <th>Quantity</th>
+                                                <th>Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
 
-                            <Input type="text"
-                                placeholder="Name"
-                                value={name}
-                                name="name"
-                                onChange={e => setName(e.target.value)} />
-                            <Input type="text"
-                                placeholder="Email"
-                                value={email}
-                                name="email"
-                                onChange={e => setEmail(e.target.value)} />
-                            <CityHolder>
-                                <Input type="text"
-                                    placeholder="City"
-                                    value={city}
-                                    name="city"
-                                    onChange={e => setCity(e.target.value)} />
-                                <Input type="text"
-                                    placeholder="Postal Code"
-                                    value={postalCode}
-                                    name="postalCode"
-                                    onChange={e => setPostalCode(e.target.value)} />
-                            </CityHolder>
-                            <Input type="text"
-                                placeholder="Street Address"
-                                value={streetAddress}
-                                name="streetAddress"
-                                onChange={e => setStreetAddress(e.target.value)} />
-                            <Input type="text"
-                                placeholder="Country"
-                                value={country}
-                                name="country"
-                                onChange={e => setCountry(e.target.value)} />
 
-                            <StyledButton onClick={goToPayment}>
-                                <span>
-                                    Continue To Payment
-                                </span>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={1.5}
-                                    stroke="currentColor"
-                                    className="w-6 h-6 hidden">
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                </svg>
-                            </StyledButton>
+                                            {products.map(product => (
+                                                <>
+                                                    <tr key={product._id}>
+                                                        <ProductCell>
 
+                                                            <td>
+                                                                <img src={product.images[0]} alt="image" />
+                                                            </td>
+                                                            <td>    {product.title}</td>
+                                                        </ProductCell>
+                                                        <td >
+
+
+                                                            <QuantityButton onClick={() => lessOfThisProduct(product._id)} >-</QuantityButton>
+                                                            {cartProducts.filter(id => id === product._id).length}
+                                                            <QuantityButton onClick={() => moreOfThisProduct(product._id)}>+</QuantityButton>
+                                                        </td>
+                                                        <td>${cartProducts.filter(id => id === product._id).length * product.price}</td>
+
+                                                    </tr>
+
+                                                </>
+                                            )
+                                            )
+                                            }
+                                            <tr>
+                                                <td>
+                                                    <ClearButton onClick={clearAll}>
+                                                        Clear Cart
+                                                    </ClearButton>
+                                                </td>
+                                                <td></td>
+                                                <td>${total}</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </StyledTable>
+                                )
+                            }
                         </Box>
 
-                    )}
+                        {!!cartProducts?.length && (
+                            <Box>
+                                <h2>Order Information</h2>
+
+
+                                <Input type="text"
+                                    placeholder="Name"
+                                    value={name}
+                                    name="name"
+                                    onChange={e => setName(e.target.value)} />
+                                <Input type="text"
+                                    placeholder="Email"
+                                    value={email}
+                                    name="email"
+                                    onChange={e => setEmail(e.target.value)} />
+                                <CityHolder>
+                                    <Input type="text"
+                                        placeholder="City"
+                                        value={city}
+                                        name="city"
+                                        onChange={e => setCity(e.target.value)} />
+                                    <Input type="text"
+                                        placeholder="Postal Code"
+                                        value={postalCode}
+                                        name="postalCode"
+                                        onChange={e => setPostalCode(e.target.value)} />
+                                </CityHolder>
+                                <Input type="text"
+                                    placeholder="Street Address"
+                                    value={streetAddress}
+                                    name="streetAddress"
+                                    onChange={e => setStreetAddress(e.target.value)} />
+                                <Input type="text"
+                                    placeholder="Country"
+                                    value={country}
+                                    name="country"
+                                    onChange={e => setCountry(e.target.value)} />
+
+                                <StyledButton onClick={goToPayment}>
+                                    <span>
+                                        Continue To Payment
+                                    </span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                        className="w-6 h-6 hidden">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                                    </svg>
+                                </StyledButton>
+
+                            </Box>
+
+                        )}
 
 
 
-                </ColumnsWrapper>
+                    </ColumnsWrapper>
+                </motion.div>
             </Center>
 
         </>

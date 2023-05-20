@@ -5,6 +5,7 @@ import { Product } from '@/models/Product'
 import React, { useState, useEffect, useRef } from 'react'
 import Catprod from '@/components/Catprod'
 import CatIcon from '@/components/icons/CatIcon'
+import { motion } from 'framer-motion'
 export default function Categories({ allProducts }) {
 
     const [mobileArr, setMobileArr] = useState([]);
@@ -81,42 +82,51 @@ export default function Categories({ allProducts }) {
                     </div>
                 </div>
 
-                <div className='flex flex-col border-b-2 border-gray-400 pt-4' ref={targetRef1}>
-                    <h1 className='text-4xl text-bold flex items-center gap-2 border-l-2 border-gray-800 pl-2'>
-                        <CatIcon />
-                        TV</h1>
-                    <Catprod products={tvArr} />
-                </div>
+                <motion.div
+                    className="container text-center"
+                    initial={{ opacity: 0, y: "2000px" }}
+                    animate={{ opacity: 1, y: "0px" }}
+                    exit={{ opacity: 0, y: "2000px" }}
+                    transition={{ duration: 1 }}
+                >
 
-                <div className='flex flex-col border-b-2 border-gray-400 pt-4' ref={targetRef2}>
-                    <h1 className='text-4xl text-bold flex items-center gap-2 border-l-2 border-gray-800 pl-2'> <CatIcon />Laptop</h1>
-                    <Catprod products={laptopArr} />
-                </div>
+                    <div className='flex flex-col border-b-2 border-gray-400 pt-4' ref={targetRef1}>
+                        <h1 className='text-4xl text-bold flex items-center gap-2 border-l-2 border-gray-800 pl-2'>
+                            <CatIcon />
+                            TV</h1>
+                        <Catprod products={tvArr} />
+                    </div>
 
-                <div className='flex flex-col border-b-2 border-gray-400 pt-2' ref={targetRef7}>
-                    <h1 className='text-4xl text-bold flex items-center gap-2 border-l-2 border-gray-800 pl-2'> <CatIcon />Mobile</h1>
-                    <Catprod products={mobileArr} />
-                </div>
+                    <div className='flex flex-col border-b-2 border-gray-400 pt-4' ref={targetRef2}>
+                        <h1 className='text-4xl text-bold flex items-center gap-2 border-l-2 border-gray-800 pl-2'> <CatIcon />Laptop</h1>
+                        <Catprod products={laptopArr} />
+                    </div>
 
-                <div className='flex flex-col border-b-2 border-gray-400 pt-2' ref={targetRef3}>
-                    <h1 className='text-4xl text-bold flex items-center gap-2 border-l-2 border-gray-800 pl-2'> <CatIcon />Trimmer</h1>
-                    <Catprod products={trimmerArr} />
-                </div>
+                    <div className='flex flex-col border-b-2 border-gray-400 pt-2' ref={targetRef7}>
+                        <h1 className='text-4xl text-bold flex items-center gap-2 border-l-2 border-gray-800 pl-2'> <CatIcon />Mobile</h1>
+                        <Catprod products={mobileArr} />
+                    </div>
 
-                <div className='flex flex-col border-b-2 border-gray-400 pt-2' ref={targetRef6}>
-                    <h1 className='text-4xl text-bold flex items-center gap-2 border-l-2 border-gray-800 pl-2'> <CatIcon />Speaker</h1>
-                    <Catprod products={speakerArr} />
-                </div>
+                    <div className='flex flex-col border-b-2 border-gray-400 pt-2' ref={targetRef3}>
+                        <h1 className='text-4xl text-bold flex items-center gap-2 border-l-2 border-gray-800 pl-2'> <CatIcon />Trimmer</h1>
+                        <Catprod products={trimmerArr} />
+                    </div>
 
-                <div className='flex flex-col border-b-2 border-gray-400 pt-2' ref={targetRef4}>
-                    <h1 className='text-4xl text-bold flex items-center gap-2 border-l-2 border-gray-800 pl-2'> <CatIcon />Headphone</h1>
-                    <Catprod products={headphonesArr} />
-                </div>
+                    <div className='flex flex-col border-b-2 border-gray-400 pt-2' ref={targetRef6}>
+                        <h1 className='text-4xl text-bold flex items-center gap-2 border-l-2 border-gray-800 pl-2'> <CatIcon />Speaker</h1>
+                        <Catprod products={speakerArr} />
+                    </div>
 
-                <div className='flex flex-col border-b-2 border-gray-400 pt-2' ref={targetRef5}>
-                    <h1 className='text-4xl text-bold flex items-center gap-2 border-l-2 border-gray-800 pl-2'> <CatIcon />Bluetooth</h1>
-                    <Catprod products={bluetoothArr} />
-                </div>
+                    <div className='flex flex-col border-b-2 border-gray-400 pt-2' ref={targetRef4}>
+                        <h1 className='text-4xl text-bold flex items-center gap-2 border-l-2 border-gray-800 pl-2'> <CatIcon />Headphone</h1>
+                        <Catprod products={headphonesArr} />
+                    </div>
+
+                    <div className='flex flex-col border-b-2 border-gray-400 pt-2' ref={targetRef5}>
+                        <h1 className='text-4xl text-bold flex items-center gap-2 border-l-2 border-gray-800 pl-2'> <CatIcon />Bluetooth</h1>
+                        <Catprod products={bluetoothArr} />
+                    </div>
+                </motion.div>
             </Center>
         </>
     )

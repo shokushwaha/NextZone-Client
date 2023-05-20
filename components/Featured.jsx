@@ -5,7 +5,7 @@ import ButtonLink from "./ButtonLink";
 import CartIcon from "./icons/CartIcon";
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
-
+import { motion } from "framer-motion";
 const Bg = styled.div`
 color: #fff;
 background-color: #222;
@@ -71,31 +71,39 @@ export default function Featured({ product }) {
 
                 <Center>
 
-                    <Wrapper>
-                        <Column>
-                            <div>
 
-                                <Title>{product.title}</Title>
-                                <Desc>{product.description}</Desc>
-                                <ButtonWrapper>
-                                    <ButtonLink white outlined href={'/product/' + product._id}>
-                                        Read More</ButtonLink>
-                                    <Button primary size="l" onClick={addFeaturedToCart} >
-                                        <CartIcon />
-                                        Add To Cart</Button>
-                                </ButtonWrapper>
-                            </div>
+                    <motion.div
+                        className="container text-center"
+                        initial={{ opacity: 0, x: "-2000px" }}
+                        animate={{ opacity: 1, x: "0px" }}
+                        exit={{ opacity: 0, x: "-2000px" }}
+                        transition={{ duration: 1 }}
+                    >
+                        <Wrapper>
+                            <Column>
+                                <div>
 
-                        </Column>
-                        <Column>
+                                    <Title>{product.title}</Title>
+                                    <Desc>{product.description}</Desc>
+                                    <ButtonWrapper>
+                                        <ButtonLink white outlined href={'/product/' + product._id}>
+                                            Read More</ButtonLink>
+                                        <Button primary size="l" onClick={addFeaturedToCart} >
+                                            <CartIcon />
+                                            Add To Cart</Button>
+                                    </ButtonWrapper>
+                                </div>
 
-                            <StyledImage src="https://res.cloudinary.com/dt21djrjq/image/upload/v1683804256/mah5bgotqqq4szpxhos6.jpg" alt="featured image" />
+                            </Column>
+                            <Column>
+
+                                <StyledImage src="https://res.cloudinary.com/dt21djrjq/image/upload/v1683804256/mah5bgotqqq4szpxhos6.jpg" alt="featured image" />
 
 
-                        </Column>
+                            </Column>
 
-                    </Wrapper>
-
+                        </Wrapper>
+                    </motion.div>
                 </Center>
             </Bg>
         </>
