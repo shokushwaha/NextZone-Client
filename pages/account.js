@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
+import Link from 'next/link';
 export default function Account() {
     const { loggedInUser, setLoggedInUser, setLoggedIn, cartProducts, setCartProducts } = useContext(CartContext);
     const [id, setId] = useState('');
@@ -62,6 +63,7 @@ export default function Account() {
 
         setEditButtonClicked(false);
     }
+
 
 
     return (
@@ -235,6 +237,13 @@ export default function Account() {
                                                                 </span>
                                                                 {order.updatedAt.substring(0, 10)}
                                                             </span>
+                                                            <span className='text-gray-600 hover:text-gray-800'>
+                                                                <Link href={'/product/' + order._id}>
+
+                                                                    More Info
+                                                                </Link>
+                                                            </span>
+
                                                         </div>
                                                     </div>
                                                 </>
