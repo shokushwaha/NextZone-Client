@@ -9,8 +9,8 @@ const StyledHeader = styled.header`
     background-color: #222;
 position: sticky;
   top: 0;
+ width: 100vw;
  
-
 `;
 
 const Logo = styled(Link)`
@@ -57,7 +57,7 @@ export default function Header() {
                         transition={{ duration: 1 }}
                     >
 
-                        <Wrapper>
+                        <Wrapper >
 
                             <Logo href={'/'}>NextZone</Logo>
 
