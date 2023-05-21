@@ -9,7 +9,7 @@ import { useState, useEffect, useContext } from 'react';
 
 export default function Home({ featuredProduct, newProducts }) {
   const { loggedIn } = useContext(CartContext);
-  console.log(loggedIn);
+
 
   function MyMobileComponent() {
     return <h1 className="flex justify-center items-center min-h-screen min-w-screen bg-bgPrimary text-black " >Sorry this website can only be accessed by Desktop</h1>
