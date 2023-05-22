@@ -229,7 +229,7 @@ export default function Account() {
                                                                 <span className='text-gray-600' >
                                                                     Price: &nbsp;
                                                                 </span>
-                                                                {order.price}
+                                                                ${order.price}
                                                             </span>
                                                             <span>
                                                                 <span className='text-gray-600' >
