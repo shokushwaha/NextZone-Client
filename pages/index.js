@@ -29,12 +29,12 @@ export default function Home({ featuredProduct, newProducts }) {
   return (
     <>
       {loggedIn ?
-        <>
+        <div div className='overflow-x-hidden'>
           <Header />
           <Featured product={featuredProduct} />
           <NewProducts products={newProducts} />
 
-        </>
+        </div>
         :
         <>
           <PleaseLogin />

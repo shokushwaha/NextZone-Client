@@ -7,6 +7,7 @@ import axios from "axios";
 import Input from "@/components/Input";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 const ColumnsWrapper = styled.div`
 display: grid;
 grid-template-columns: 1.2fr 0.8fr;
@@ -108,6 +109,7 @@ export default function CartPage() {
     const [streetAddress, setStreetAddress] = useState('');
     const [country, setCountry] = useState('');
     const [isSuccess, setIsSuccess] = useState(false);
+    const router = useRouter();
     useEffect(() => {
         if (cartProducts?.length > 0) {
             axios.post('/api/cart', { ids: cartProducts }).then(response => setProducts(response.data));
@@ -157,6 +159,16 @@ export default function CartPage() {
         total += price;
     }
 
+    const payOnDelivery = async () => {
+        router.push(
+            {
+                pathname:
+                    '/ordersuccess',
+                query: { name: total }
+            }
+
+        );
+    }
 
 
     if (isSuccess) {
@@ -307,6 +319,23 @@ export default function CartPage() {
                                 <StyledButton onClick={goToPayment}>
                                     <span>
                                         Continue To Payment
+                                    </span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                        className="w-6 h-6 hidden">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                                    </svg>
+                                </StyledButton>
+                                <StyledButton onClick={payOnDelivery}>
+                                    <span>
+                                        Pay on Delivery
                                     </span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"

@@ -15,9 +15,9 @@ export default async function handler(req, res) {
     if (method === "POST") {
 
         await Client.updateOne({ _id: req.body.id }, {
-            $sest: { cart: [] }
+            $set: { cart: [] }
         })
-        res.json(true)
+        res.json('true')
     }
 
 }

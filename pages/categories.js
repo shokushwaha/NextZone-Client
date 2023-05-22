@@ -52,7 +52,7 @@ export default function Categories({ allProducts }) {
     const targetRef7 = useRef(null);
 
     return (
-        <>
+        <div className='overflow-x-hidden'>
             <Header />
 
             <Center>
@@ -128,7 +128,7 @@ export default function Categories({ allProducts }) {
                     </div>
                 </motion.div>
             </Center>
-        </>
+        </div>
     )
 }
 

@@ -11,10 +11,11 @@ grid-template-columns: 1fr 1fr 1fr ;
 gap: 30px;
 padding-top: 30px;
 padding-bottom: 20px;
+
 `;
 export default function ProductsPage({ products }) {
     return (
-        <>
+        <div className="overflow-x-hidden">
 
             <Header />
             <Center>
@@ -35,7 +36,7 @@ export default function ProductsPage({ products }) {
                     </ProductsGrid>
                 </motion.div>
             </Center>
-        </>
+        </div>
     )
 }
 
