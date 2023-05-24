@@ -23,7 +23,7 @@ export function CartContextProvider({ children }) {
         }
         if (ls) {
             const user = JSON.parse(ls.getItem('loggedInUser'))
-            setLoggedInUser(user.data);
+            setLoggedInUser(user);
         }
 
 
