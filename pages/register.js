@@ -6,6 +6,7 @@ import { Toaster, toast } from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import Head from 'next/head';
 const StyledButton = styled.button`
 width: 100%;
 background-color: skyBlue;
@@ -59,6 +60,10 @@ export default function Register() {
     }
     return (
         <>
+            <Head>
+                <title>NextZone - Register</title>
+
+            </Head>
             <Center>
                 <Toaster
                     position="top-right"

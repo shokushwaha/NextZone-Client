@@ -7,6 +7,7 @@ import React, { useContext, useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import Head from 'next/head';
 const StyledButton = styled.button`
 width: 100%;
 background-color: skyBlue;
@@ -51,6 +52,7 @@ export default function Login() {
       }
 
       const res = await axios.post('/api/login', { email, password });
+      console.log(res)
 
       if (res) {
         toast.success("Logged In")
@@ -61,7 +63,7 @@ export default function Login() {
         router.push('/');
 
       }
-      else {
+      else if (res.statusCode !== 200) {
         toast.error("Invalid credentials")
       }
     } catch (error) {
@@ -72,6 +74,10 @@ export default function Login() {
   }
   return (
     <>
+      <Head>
+        <title>NextZone - Login</title>
+
+      </Head>
       <Center>
         <Toaster
           position="top-right"

@@ -7,9 +7,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 import Link from 'next/link';
 import styled from 'styled-components';
+import Head from 'next/head';
+import Footer from '@/components/Footer';
 const StyledDiv = styled.div`
 
-
+min-height: 90vh;
 @media screen and (max-width: 650px) {
    
    display  :flex ;
@@ -86,6 +88,10 @@ export default function Account() {
 
     return (
         <>
+            <Head>
+                <title>NextZone - Account</title>
+
+            </Head>
             <Nav />
             <Center>
 
@@ -275,6 +281,7 @@ export default function Account() {
                     </div>
                 </StyledDiv>
             </Center>
+            <Footer />
 
         </>
     )

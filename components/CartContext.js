@@ -17,12 +17,13 @@ export function CartContextProvider({ children }) {
         }
         if (ls) {
             const str = JSON.parse(ls.getItem('loggedIn'))
+            console.log(str)
             if (str === 'true')
                 setLoggedIn(true);
         }
         if (ls) {
             const user = JSON.parse(ls.getItem('loggedInUser'))
-            setLoggedInUser(user);
+            setLoggedInUser(user.data);
         }
 
 
@@ -45,31 +46,11 @@ export function CartContextProvider({ children }) {
                 cartProducts.push(i);
         }
 
-        // fetchCart()
+
     }, [])
 
 
-    // async function fetchCart() {
-    //     const result = await axios.post('/api/getcart', { id });
-    //     console.log(result.data);
-    //     console.log(typeof (result));
-    //     // const tempCart = result.data.cart;
-    //     // console.log(tempCart)
-    //     const tempArr = result.data;
-    //     // console.log(tempArr)
-    //     // console.log(typeof (tempArr))
-    //     // console.log(tempArr[0].name)
-    //     // for (const i in tempArr) {
-    //     // console.log(i.name)
-    //     // }
-    //     const tempCart = tempArr[0].cart;
-    //     for (let i = 0; i < tempCart.length; i++) {
-    //         console.log(tempCart[i])
-    //         if (!cartProducts.includes(tempCart[i])) {
-    //             cartProducts.push(tempCart[i]);
-    //         }
-    //     }
-    // }
+
 
     async function addProduct(productId) {
         await axios.post('/api/addtocart', {

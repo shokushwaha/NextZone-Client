@@ -5,6 +5,7 @@ import { mongooseConnect } from '@/lib/mongoose';
 import { Client } from '@/models/Customer';
 import { loadComponents } from 'next/dist/server/load-components';
 import { useContext } from 'react';
+import { toast } from 'react-hot-toast';
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -24,9 +25,10 @@ export default async function handler(req, res) {
   }
   console.log(user);
   if (isPasswordValid)
-    res.json(user);
+    res.status(200).json(user);
 
-  else
-    res.json(false);
+  else {
+    res.status(500).json(false);
+  }
 
 }

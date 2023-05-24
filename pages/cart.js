@@ -9,6 +9,8 @@ import Input from "@/components/Input";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+import Head from "next/head";
+import Footer from "@/components/Footer";
 const ColumnsWrapper = styled.div`
 display: grid;
 grid-template-columns: 1.2fr 0.8fr;
@@ -209,6 +211,10 @@ export default function CartPage() {
     if (isSuccess) {
         return (
             <>
+                <Head>
+                    <title>NextZone - Cart</title>
+
+                </Head>
                 <Navbar />
                 <Center>
 
@@ -395,6 +401,7 @@ export default function CartPage() {
                     </ColumnsWrapper>
                 </motion.div>
             </Center>
+            <Footer />
 
         </>
     )
