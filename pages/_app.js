@@ -1,6 +1,7 @@
 import { CartContextProvider } from '@/components/CartContext';
 import '@/styles/globals.css'
 import { createGlobalStyle } from 'styled-components'
+// import "../styles/global.css";
 const GlobalStyles = createGlobalStyle`
 body{
   background-color: #eee;

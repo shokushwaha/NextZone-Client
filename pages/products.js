@@ -5,6 +5,7 @@ import { Product } from "@/models/Product";
 import ProductBox from "@/components/ProductBox";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import Nav from "@/components/Navbar";
 const ProductsGrid = styled.div`
 display: grid;
 grid-template-columns: 1fr 1fr 1fr ;
@@ -12,12 +13,34 @@ gap: 30px;
 padding-top: 30px;
 padding-bottom: 20px;
 
+
+
+@media screen and (max-width: 700px) {
+    display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+   
+  }
+
+  @media screen and (max-width: 550px) {
+    display: grid;
+grid-template-columns: 1fr 1fr;
+   
+  }
+
+  
+  @media screen and (max-width: 400px) {
+    display: grid;
+grid-template-columns: 1fr;
+   
+  }
+
+
 `;
 export default function ProductsPage({ products }) {
     return (
         <div className="overflow-x-hidden">
 
-            <Header />
+            <Nav />
             <Center>
                 <motion.div
                     className="container text-center"

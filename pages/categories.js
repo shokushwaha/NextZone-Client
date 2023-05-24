@@ -6,6 +6,34 @@ import React, { useState, useEffect, useRef } from 'react'
 import Catprod from '@/components/Catprod'
 import CatIcon from '@/components/icons/CatIcon'
 import { motion } from 'framer-motion'
+import styled from 'styled-components'
+import Nav from '@/components/Navbar'
+const CatHead = styled.div`
+@media screen and (max-width: 650px) {
+   display  :flex ;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 20px;
+   margin-top: 10px;
+   }
+`;
+
+const CatGrid = styled.div`
+
+@media screen and (max-width: 650px) {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+   
+   }
+
+@media screen and (max-width: 650px) {
+display: grid;
+grid-template-columns: 1fr 1fr;
+   
+   }
+`;
+
 export default function Categories({ allProducts }) {
 
     const [mobileArr, setMobileArr] = useState([]);
@@ -53,16 +81,16 @@ export default function Categories({ allProducts }) {
 
     return (
         <div className='overflow-x-hidden'>
-            <Header />
+            <Nav />
 
             <Center>
-                <div className='flex gap-20 items-center border-b-2 border-gray-800 '>
+                <CatHead className='flex gap-20 items-center border-b-2 border-gray-800 '>
 
                     <h1 className=' flex items-center gap-2 text-4xl  ' ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
                     </svg>
                         Categories</h1>
-                    <div className=' grid grid-cols-4 gap-2  w-full py-4'>
+                    <CatGrid className=' grid grid-cols-4 gap-2  w-full py-4'>
 
                         <button onClick={() => targetRef1.current.scrollIntoView({ behavior: 'smooth' })}
                             className='bg-white rounded-md  shadow-md px-1 hover:bg-gray-800 hover:text-gray-200'
@@ -79,8 +107,8 @@ export default function Categories({ allProducts }) {
                             className='bg-white rounded-md  shadow-md px-1 hover:bg-gray-800 hover:text-gray-200'>Speaker</button>
                         <button onClick={() => targetRef7.current.scrollIntoView({ behavior: 'smooth' })}
                             className='bg-white rounded-md  shadow-md px-1 hover:bg-gray-800 hover:text-gray-200'>Phone</button>
-                    </div>
-                </div>
+                    </CatGrid>
+                </CatHead>
 
                 <motion.div
                     className="container text-center"

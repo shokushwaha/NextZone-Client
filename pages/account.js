@@ -1,10 +1,28 @@
 import { CartContext } from '@/components/CartContext'
 import Center from '@/components/Center';
 import Header from '@/components/Header';
+import Nav from "@/components/Navbar";
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 import Link from 'next/link';
+import styled from 'styled-components';
+const StyledDiv = styled.div`
+
+
+@media screen and (max-width: 650px) {
+   
+   display  :flex ;
+   flex-direction: column;
+align-items: center;
+   justify-content: center;
+   gap: 20px;
+   
+   }
+   
+`;
+
+
 export default function Account() {
     const { loggedInUser, setLoggedInUser, setLoggedIn, cartProducts, setCartProducts } = useContext(CartContext);
     const [id, setId] = useState('');
@@ -68,10 +86,10 @@ export default function Account() {
 
     return (
         <>
-            <Header />
+            <Nav />
             <Center>
 
-                <div className='flex  justify-between'>
+                <StyledDiv className='flex  justify-between'>
                     {!editButtonClicked ?
                         <div className='flex flex-col gap-4'>
                             <h1 className='text-4xl py-4' >Account Details</h1>
@@ -255,7 +273,7 @@ export default function Account() {
                             </>
                         }
                     </div>
-                </div>
+                </StyledDiv>
             </Center>
 
         </>

@@ -10,6 +10,30 @@ grid-template-columns: 1fr 1fr 1fr 1fr;
 gap: 30px;
 padding-top: 30px;
 padding-bottom: 20px;
+
+
+
+
+@media screen and (max-width: 700px) {
+    display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+   
+  }
+
+  @media screen and (max-width: 550px) {
+    display: grid;
+grid-template-columns: 1fr 1fr;
+   
+  }
+
+  
+  @media screen and (max-width: 400px) {
+    display: grid;
+grid-template-columns: 1fr;
+   
+  }
+
+
 `;
 const StyledTitle = styled.div`
 font-weight: 900;

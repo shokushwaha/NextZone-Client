@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import Center from './Center';
@@ -6,11 +6,24 @@ import { CartContext } from './CartContext';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 const StyledHeader = styled.header`
-    background-color: #222;
+  background-color: #222;
 position: sticky;
   top: 0;
  width: 100vw;
  z-index: 100;
+ @media screen and (max-width: 650px) {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+  }
+
+
+  @media screen and (max-width: 400px) {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+   
+  }
 `;
 
 const Logo = styled(Link)`
@@ -24,6 +37,40 @@ const Wrapper = styled.div`
 display: flex;
 justify-content: space-between;
 padding: 20px 0px ;
+
+@media screen and (max-width: 650px) {
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+  flex-wrap: wrap;
+   
+  }
+
+
+  @media screen and (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+  flex-wrap: wrap;
+   
+  }
+
+
+  
+  @media screen and (max-width: 400px) {
+    display: flex;
+    flex-direction: column;
+   
+    justify-content: center;
+  flex-wrap: wrap;
+  
+   
+  }
+
+
+
 `;
 
 const NavLink = styled(Link)`
@@ -32,11 +79,22 @@ text-decoration: none;
 display: flex;
 align-items: center;
 padding: 0px 4px;
+padding-bottom: 4px;
+
 `;
 
 const StyledNav = styled.nav`
 display: flex;
 gap: 15px;
+
+
+@media screen and (max-width: 500px) {
+  
+  margin-top: 10px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+
+  }
 `;
 
 export default function Header() {
@@ -44,6 +102,7 @@ export default function Header() {
     const router = useRouter();
     const inActiveLink = ' ';
     const activeLink = 'border-b-2 border-gray-400 ';
+
 
     return (
         <>
@@ -60,6 +119,8 @@ export default function Header() {
                         <Wrapper >
 
                             <Logo href={'/'}>NextZone</Logo>
+
+
 
                             <StyledNav>
                                 <NavLink href={'/'} className={router.pathname === '/' ? activeLink : inActiveLink}>
@@ -94,6 +155,8 @@ export default function Header() {
 
                                     Cart ({cartProducts.length})</NavLink>
                             </StyledNav>
+
+
                         </Wrapper>
                     </motion.div >
                 </Center>

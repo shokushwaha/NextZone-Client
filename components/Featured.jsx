@@ -23,6 +23,7 @@ const Title = styled.h1`
 const Desc = styled.p`
    color: #aaa;
    font-size: 0.8rem;
+
 `;
 
 const Wrapper = styled.div`
@@ -32,6 +33,15 @@ gap:40px;
 img{
     max-width: 100%;
 }
+
+
+
+@media screen and (max-width: 500px) {
+    display: flex;
+    flex-direction: column-reverse;
+
+  }
+
 `;
 
 const Column = styled.div`

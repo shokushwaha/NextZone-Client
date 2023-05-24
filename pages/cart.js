@@ -1,6 +1,7 @@
 import { CartContext } from "@/components/CartContext";
 import Center from "@/components/Center";
 import Header from "@/components/Header";
+import Navbar from "@/components/Navbar";
 import { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import axios from "axios";
@@ -13,6 +14,23 @@ display: grid;
 grid-template-columns: 1.2fr 0.8fr;
 gap: 40px;
 margin-top: 40px;
+
+
+
+
+
+  @media screen and (max-width: 550px) {
+   
+display  :flex ;
+flex-direction: column;
+justify-content: center;
+
+}
+
+  
+
+
+
 `;
 
 const Box = styled.div`
@@ -82,6 +100,23 @@ font-size: 1.5rem;
 border: 2px solid #f0f0f0;
 border-radius: 10px;
 margin: 0px 10px;
+
+@media screen and (max-width: 770px) {
+   
+   font-size: 1.2rem;
+   width: 15%;
+   
+   text-align: center;
+  
+   }
+
+@media screen and (max-width: 430px) {
+   
+   font-size: 1.2rem;
+   width: 15%;
+ 
+   
+   }
 `;
 
 const CityHolder = styled.div`
@@ -174,7 +209,7 @@ export default function CartPage() {
     if (isSuccess) {
         return (
             <>
-                <Header />
+                <Navbar />
                 <Center>
 
                     <Box>

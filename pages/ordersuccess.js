@@ -1,6 +1,7 @@
 import { CartContext } from '@/components/CartContext';
 import Center from '@/components/Center'
 import Header from '@/components/Header'
+import Nav from '@/components/Navbar';
 import { useRouter } from 'next/router'
 import React, { useContext, useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast';
@@ -13,7 +14,7 @@ export default function Ordersuccess() {
     const { clearCart } = useContext(CartContext)
     return (
         <>
-            <Header />
+            <Nav />
             <Toaster
                 position="top-right"
                 reverseOrder={false}

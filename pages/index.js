@@ -2,6 +2,7 @@ import { CartContext } from '@/components/CartContext';
 import Featured from '@/components/Featured'
 import Header from '@/components/Header'
 import NewProducts from '@/components/NewProducts';
+import Navbar from '@/components/Navbar';
 import PleaseLogin from '@/components/PleaseLogin';
 import { mongooseConnect } from '@/lib/mongoose';
 import { Product } from '@/models/Product';
@@ -9,28 +10,12 @@ import { useState, useEffect, useContext } from 'react';
 
 export default function Home({ featuredProduct, newProducts }) {
   const { loggedIn } = useContext(CartContext);
-
-
-  function MyMobileComponent() {
-    return <h1 className="flex justify-center items-center min-h-screen min-w-screen bg-bgPrimary text-black " >Sorry this website can only be accessed by Desktop</h1>
-  }
-  const [isDesktop, setIsDesktop] = useState(false)
-  useEffect(() => {
-    function handleResize() {
-      setIsDesktop(window.innerWidth >= 1024)
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-
-  }, []);
-
-  if (!isDesktop) return <MyMobileComponent />
   return (
     <>
       {loggedIn ?
         <div div className='overflow-x-hidden'>
-          <Header />
+          <Navbar />
+          {/* <Header /> */}
           <Featured product={featuredProduct} />
           <NewProducts products={newProducts} />
 
