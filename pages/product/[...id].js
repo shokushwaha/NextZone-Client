@@ -9,6 +9,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import Nav from "@/components/Navbar";
 const Title = styled.div`
 font-size:2rem;
 `;
@@ -18,13 +19,33 @@ grid-template-columns: 0.8fr 1.2fr;
 gap: 40px;
 margin-top: 40px;
 min-height: 60vh;
+
+
+@media screen and (max-width: 550px) {
+   
+   display  :flex ;
+   flex-direction: column;
+   justify-content: center;
+   
+   }
 `;
 
 const WhiteBox = styled.div`
 background: #fff;
 border-radius: 10px;
 padding:40px;
+
 `;
+const StyledBox = styled.div`
+
+@media screen and (max-width: 550px) {
+   
+   display  :flex ;
+   flex-direction: column;
+   justify-content: center;
+   gap:20px;
+
+   }`;
 export default function ProductPage({ product }) {
 
     const { addProduct } = useContext(CartContext);
@@ -49,7 +70,7 @@ export default function ProductPage({ product }) {
 
     return (
         <div className="overflow-x-hidden">
-            <Header />
+            <Nav />
             <Center>
                 <Wrapper>
                     <WhiteBox>
@@ -78,7 +99,7 @@ export default function ProductPage({ product }) {
                             <p>
                                 {product.description}
                             </p>
-                            <div className="flex  items-center justify-between">
+                            <StyledBox className="flex  items-center justify-between">
 
                                 <div className="mt-10 text-4xl">
                                     ${product.price}
@@ -97,7 +118,7 @@ export default function ProductPage({ product }) {
 
 
                                 </div>
-                            </div>
+                            </StyledBox>
 
                             <div className="flex flex-col mt-10" >
                                 <div className="text-gray-600 text-xl">

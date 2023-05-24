@@ -9,12 +9,18 @@ const BigImage = styled.img`
   width: 20 0px;
   height: 150px;
   margin: 0px auto;
+  border-radius: 10px;
+ 
 `;
 const ImageButtons = styled.div`
     display: flex;
     gap: 10px;
     flex-grow: 0;
     margin-top: 10px;
+    img{
+
+      border-radius: 10px;
+    }
   `;
 const ImageButton = styled.div`
     ${props => props.active ? `
@@ -27,6 +33,15 @@ const ImageButton = styled.div`
     cursor: pointer;
     border-radius: 5px;
     flex-wrap:wrap;
+    
+  @media screen and (max-width: 550px) {
+   
+   display  :flex ;
+   flex-direction: column;
+   justify-content: center;
+   height:80px;
+   flex-wrap:wrap;
+     }
   `;
 const BigImageWrapper = styled.div`
   text-align: center;
