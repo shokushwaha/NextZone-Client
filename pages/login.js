@@ -103,6 +103,12 @@ export default function Login() {
               </svg>
 
             </div>
+            <div className='flex flex-col px-8 '>
+
+              <Link href={'https://nextzone-admin-shobhit.netlify.app'} className='text-blue-600 text-extrabold text-xl pt-4 hover:text-blue-800 '>
+                Admin Login
+              </Link>
+            </div>
           </motion.div>
 
           <motion.div
@@ -145,7 +151,8 @@ export default function Login() {
 
                 </StyledButton>
               </form>
-              <div className='flex flex-col px-8 pb-20'>
+
+              <div className='flex flex-col px-8 pb-4'>
                 New to NextZone?
                 <Link href={'/register'} className='text-blue-600 '>
                   Regiter here!
