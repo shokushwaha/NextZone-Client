@@ -77,6 +77,7 @@ export function CartContextProvider({ children }) {
 
     async function clearCart() {
         await axios.post('/api/clearcart', { id });
+        ls.removeItem('cart');
         setCartProducts([]);
     }
 
