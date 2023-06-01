@@ -67,7 +67,6 @@ export default function Account() {
 
     const showOrders = async () => {
         axios.post('/api/cart', { ids: orders }).then(response => {
-            console.log(response.data)
             setOrderArr(response.data)
             setShowOrderButton(true)
         });

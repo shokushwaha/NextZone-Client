@@ -11,6 +11,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import Nav from "@/components/Navbar";
 import Head from "next/head";
+import { Toaster, toast } from "react-hot-toast";
 const Title = styled.div`
 font-size:2rem;
 `;
@@ -57,9 +58,14 @@ export default function ProductPage({ product }) {
 
     const [review, setReview] = useState('');
     const addReview = async () => {
+        if (review === "") {
+            toast.error("Review can't be empty")
+            return;
+        }
         let productId = product._id;
         await axios.post('/api/addreview', { productId, review });
         console.log('review added')
+        toast.success("Review added")
     }
 
 
@@ -75,6 +81,10 @@ export default function ProductPage({ product }) {
                 <title>NextZone - {product.title}</title>
 
             </Head>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             <div className="overflow-x-hidden">
                 <Nav />
                 <Center>
@@ -133,7 +143,7 @@ export default function ProductPage({ product }) {
 
 
                                     <div className="flex gap-4 p-2 items-center " >
-                                        <input type="text" value={review} onChange={e => setReview(e.target.value)} placeholder="Add review" className="px-4 py-1 rounded-md shadow" />
+                                        <input type="text" value={review} onChange={e => setReview(e.target.value)} placeholder="Add review" className="px-4 py-1 rounded-md shadow" required />
                                         <button onClick={addReview} className="bg-sky-200 hover:bg-sky-400 px-4 py-1 rounded-md shadow">Add</button>
                                     </div>
 

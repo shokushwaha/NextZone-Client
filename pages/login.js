@@ -3,7 +3,7 @@ import Center from '@/components/Center';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -42,6 +42,27 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const router = useRouter();
   const { setLoggedIn } = useContext(CartContext);
+
+
+
+  const ls = typeof window !== 'undefined' ? window.localStorage : null;
+
+
+
+  useEffect(() => {
+
+    if (ls) {
+      const user = JSON.parse(ls.getItem('loggedInUser'))
+      if (user) {
+        setLoggedInUser(user);
+        router.push("/");
+      }
+    }
+  }, []);
+
+
+
+
   const handleLogin = async (e) => {
 
     try {
@@ -52,8 +73,6 @@ export default function Login() {
       }
 
       const res = await axios.post('/api/login', { email, password });
-      console.log(res)
-
       if (res) {
         toast.success("Logged In")
         setLoggedIn(true);
@@ -63,12 +82,10 @@ export default function Login() {
         router.push('/');
 
       }
-      else if (res.statusCode !== 200) {
-        toast.error("Invalid credentials")
-      }
+
     } catch (error) {
 
-      console.log(error.message);
+      toast.error("Invalid credentials")
     }
 
   }
@@ -105,7 +122,7 @@ export default function Login() {
             </div>
             <div className='flex flex-col px-8 '>
 
-              <Link href={'https://nextzone-admin-shobhit.netlify.app'} className='text-blue-600 text-extrabold text-xl pt-4 hover:text-blue-800 '>
+              <Link href={'https://nextzone-admin-shobhit.netlify.app'} className='text-blue-600 text-extrabold text-2xl pt-4 hover:text-blue-800 '>
                 Admin Login
               </Link>
             </div>

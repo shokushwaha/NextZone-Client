@@ -11,15 +11,17 @@ import Head from 'next/head';
 import Footer from '@/components/Footer';
 
 export default function Home({ featuredProduct, newProducts }) {
-  const { loggedIn } = useContext(CartContext);
-
-
+  const { loggedIn, setLoggedInUser } = useContext(CartContext);
+  const ls = typeof window !== 'undefined' ? window.localStorage : null;
 
 
   const [online, setOnline] = useState(false);
   useEffect(() => {
     setOnline(window.navigator.onLine);
-
+    if (ls) {
+      const user = JSON.parse(ls.getItem('loggedInUser'))
+      setLoggedInUser(user);
+    }
   }, [])
 
 
