@@ -4,7 +4,7 @@ export default function Footer() {
   return (
 
 
-    <motion.div className='bg-neutral-800 text-white p-1 flex  items-center justify-center mt-10 '
+    <motion.div className='bg-neutral-800 text-white p-1 flex  items-center justify-center mt-20 '
 
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}

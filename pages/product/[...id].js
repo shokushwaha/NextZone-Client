@@ -137,6 +137,9 @@ export default function ProductPage({ product }) {
                                     </span>
                                     / 5
                                 </div>
+                                <div className="text-gray-500">
+                                    out of {tempRat.length} votes
+                                </div>
                             </motion.div>
                         </WhiteBox>
                         <div >
@@ -158,7 +161,11 @@ export default function ProductPage({ product }) {
 
                                     <div className="mt-10 text-4xl">
                                         ${product.price}
+                                        <div className="bg-yellow-300 rounded-md text-sm mt-2 px-2 py-1">
+                                            {product.discount}% off
+                                        </div>
                                     </div>
+
                                     <div>
                                         <button className="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow" onClick={() => addToCart(product._id)}>
 
