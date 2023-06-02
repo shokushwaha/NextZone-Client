@@ -146,6 +146,7 @@ export default function CartPage() {
     const [postalCode, setPostalCode] = useState('');
     const [streetAddress, setStreetAddress] = useState('');
     const [country, setCountry] = useState('');
+    // const [effectivePrice, setEffectivePrice] = useState(0);
     const [isSuccess, setIsSuccess] = useState(false);
     const router = useRouter();
     useEffect(() => {
@@ -156,7 +157,7 @@ export default function CartPage() {
             setProducts([]);
         }
 
-    }, [cartProducts])
+    }, [cartProducts, cartProducts])
 
     useEffect(() => {
         if (typeof window === 'undefined') {
@@ -196,13 +197,22 @@ export default function CartPage() {
         const price = products.find(p => p._id === productId)?.price || 0;
         total += price;
     }
+    let discountedPrice = 0;
+    for (let i = 0; i < products.length; i++) {
+
+        let p = products[i].price;
+        let d = products[i].discount
+        discountedPrice = discountedPrice + (p - (p * d) / 100);
+    }
+
+
 
     const payOnDelivery = async () => {
         router.push(
             {
                 pathname:
                     '/ordersuccess',
-                query: { name: total }
+                query: { name: effectivePrice }
             }
 
         );
@@ -310,7 +320,14 @@ export default function CartPage() {
                                                     </ClearButton>
                                                 </td>
                                                 <td></td>
-                                                <td>${total}</td>
+                                                <td className="flex flex-col">
+                                                    <span className="text-gray-400 line-through">
+                                                        ${total}
+                                                    </span>
+                                                    <span className="text-gray-800 font-bold">
+                                                        ${discountedPrice}
+                                                    </span>
+                                                </td>
                                             </tr>
 
 

@@ -35,10 +35,19 @@ align-items: center;
 justify-content: space-between;
 margin-top: 4px;
 `;
-
+const SubPrice = styled.div`
+ display: flex;
+ flex-direction: column;
+ 
+`;
 const Price = styled.div`
 font-size: 1.3rem;
 font-weight: 900;
+`;
+const Discount = styled.div`
+font-size: 0.8rem;
+color: gray;
+background-color: yellow;
 `;
 
 const StyledButton = styled.button`
@@ -56,7 +65,7 @@ transition-duration: 100ms;
     transform: scale(1.1);
 }
 `;
-export default function ProductBox({ _id, title, description, images, price }) {
+export default function ProductBox({ _id, title, description, images, price, discount }) {
     const { addProduct } = useContext(CartContext);
     const url = '/product/' + _id;
     return (
@@ -75,10 +84,19 @@ export default function ProductBox({ _id, title, description, images, price }) {
 
                     <PriceRow>
 
-                        <Price>
+                        <SubPrice>
 
-                            ${price}
-                        </Price>
+                            <Price>
+
+                                ${price}
+                            </Price>
+                            <Discount>
+                                {discount}% off
+                            </Discount>
+                        </SubPrice>
+
+
+
                         <div>
 
                             <StyledButton primary onClick={() => addProduct(_id)} >

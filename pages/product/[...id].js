@@ -12,6 +12,8 @@ import { motion } from "framer-motion";
 import Nav from "@/components/Navbar";
 import Head from "next/head";
 import { Toaster, toast } from "react-hot-toast";
+import ReactStars from "react-rating-stars-component";
+import { useRouter } from "next/router";
 const Title = styled.div`
 font-size:2rem;
 `;
@@ -50,6 +52,8 @@ const StyledBox = styled.div`
    }`;
 export default function ProductPage({ product }) {
 
+    const router = useRouter();
+
     const { addProduct } = useContext(CartContext);
     const addToCart = (id) => {
         addProduct(id);
@@ -71,9 +75,26 @@ export default function ProductPage({ product }) {
 
     const [reviewArr, setReviewArr] = useState([]);
     useEffect(() => {
-        console.log(product.reviews);
         setReviewArr(product.reviews)
     }, [])
+
+
+    const ratingChanged = async (newRating) => {
+        let stars = newRating;
+        const id = router.query.id[0];
+        const res = await axios.post('/api/rateproduct', { id, stars });
+        if (res)
+            toast.success("Ratings added")
+    };
+
+    let avgRatings = 0
+    let tempRat = product.stars
+    for (let i = 0; i < tempRat.length; i++) {
+        avgRatings += tempRat[i];
+    }
+    avgRatings = avgRatings / tempRat.length;
+
+
 
     return (
         <>
@@ -99,6 +120,23 @@ export default function ProductPage({ product }) {
 
                             >
                                 <ProductImages images={product.images} />
+                                <div className=" rounded-md shadow bg-slate-100 text-xl mt-40 mx-auto  flex flex-col items-center justify-center">
+                                    Rate the product:
+                                    <ReactStars
+                                        count={5}
+                                        onChange={ratingChanged}
+                                        size={28}
+                                        activeColor="#ffd700"
+                                    />
+                                </div>
+
+                                <div className="mt-4 text-gray-500">
+                                    Average ratings:
+                                    <span className="text-gray-800 px-1 text-xl font-bold">
+                                        {avgRatings}
+                                    </span>
+                                    / 5
+                                </div>
                             </motion.div>
                         </WhiteBox>
                         <div >
@@ -109,6 +147,7 @@ export default function ProductPage({ product }) {
                                 exit={{ opacity: 0, x: "2000px" }}
                                 transition={{ duration: 1 }}
                             >
+
                                 <Title>
                                     {product.title}
                                 </Title>

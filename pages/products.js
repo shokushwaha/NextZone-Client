@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import Nav from "@/components/Navbar";
 import Head from "next/head";
 import Footer from "@/components/Footer";
+import { useEffect } from "react";
 const ProductsGrid = styled.div`
 display: grid;
 grid-template-columns: 1fr 1fr 1fr ;
@@ -39,6 +40,7 @@ grid-template-columns: 1fr;
 
 `;
 export default function ProductsPage({ products }) {
+
     return (
         <>
             <Head>
