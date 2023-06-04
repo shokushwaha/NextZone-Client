@@ -122,7 +122,7 @@ export default function Login() {
             </div>
             <div className='flex flex-col px-8 '>
 
-              <Link href={'https://nextzone-admin-shobhit.netlify.app'} className='text-blue-600 text-extrabold text-2xl pt-4 hover:text-blue-800 '>
+              <Link href={'https://ecom-admin-panel.vercel.app/'} className='text-blue-600 text-extrabold text-2xl pt-4 hover:text-blue-800 '>
                 Admin Login
               </Link>
             </div>

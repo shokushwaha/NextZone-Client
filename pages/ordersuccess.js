@@ -26,7 +26,7 @@ export default function Ordersuccess() {
                 reverseOrder={false}
             />
             <Center>
-                <div className='flex flex-col gap-4 items-center justify-center'>
+                <div className='flex flex-col gap-4 items-center justify-center min-h-[80vh]'>
 
                     <span className='mt-4 text-xl'>
 

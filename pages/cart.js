@@ -40,6 +40,7 @@ background-color: #fff;
 border: 10px;
 padding: 20px;
 min-height:90vh;
+overflow-x: hidden;
 `;
 
 
@@ -212,7 +213,7 @@ export default function CartPage() {
             {
                 pathname:
                     '/ordersuccess',
-                query: { name: effectivePrice }
+                query: { name: discountedPrice }
             }
 
         );
@@ -250,7 +251,7 @@ export default function CartPage() {
     }
 
     return (
-        <>
+        <div className="overflow-x-hidden">
             <Header />
             <Center>
                 <motion.div
@@ -421,6 +422,6 @@ export default function CartPage() {
             </Center>
             <Footer />
 
-        </>
+        </div>
     )
 }
