@@ -147,7 +147,6 @@ export default function CartPage() {
     const [postalCode, setPostalCode] = useState('');
     const [streetAddress, setStreetAddress] = useState('');
     const [country, setCountry] = useState('');
-    // const [effectivePrice, setEffectivePrice] = useState(0);
     const [isSuccess, setIsSuccess] = useState(false);
     const router = useRouter();
     useEffect(() => {
@@ -191,6 +190,8 @@ export default function CartPage() {
         if (response.data.url) {
             window.location = response.data.url;
         }
+
+        clearCart();
     }
 
     let total = 0;
@@ -209,6 +210,7 @@ export default function CartPage() {
 
 
     const payOnDelivery = async () => {
+
         router.push(
             {
                 pathname:

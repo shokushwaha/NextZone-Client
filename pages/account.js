@@ -69,7 +69,10 @@ export default function Account() {
         axios.post('/api/cart', { ids: orders }).then(response => {
             setOrderArr(response.data)
             setShowOrderButton(true)
+            console.log(response.data)
+            alert('run')
         });
+
     }
 
 
