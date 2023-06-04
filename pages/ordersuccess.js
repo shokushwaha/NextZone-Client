@@ -2,7 +2,7 @@ import { CartContext } from '@/components/CartContext';
 import Center from '@/components/Center'
 import Footer from '@/components/Footer';
 import Header from '@/components/Header'
-import Nav from '@/components/Navbar';
+import Navbar from '@/components/Navbar';
 import Head from 'next/head';
 import { useRouter } from 'next/router'
 import React, { useContext, useState } from 'react'
@@ -28,7 +28,8 @@ export default function Ordersuccess() {
                 <title>NextZone - Order Success</title>
 
             </Head>
-            <Nav />
+            <Navbar />
+
             <Toaster
                 position="top-right"
                 reverseOrder={false}

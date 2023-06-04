@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Footer from "@/components/Footer";
+import { Toaster, toast } from "react-hot-toast";
 const ColumnsWrapper = styled.div`
 display: grid;
 grid-template-columns: 1.2fr 0.8fr;
@@ -157,7 +158,7 @@ export default function CartPage() {
             setProducts([]);
         }
 
-    }, [cartProducts, cartProducts])
+    }, [cartProducts])
 
     useEffect(() => {
         if (typeof window === 'undefined') {
@@ -181,6 +182,11 @@ export default function CartPage() {
     }
     let id = loggedInUser?.data?._id;
     const goToPayment = async () => {
+        if (!name || !city || !email || !postalCode || !streetAddress || !country) {
+            alert("Fill all the details");
+            return;
+        }
+
         await axios.post('/api/order', { id, cartProducts });
 
         const response = await axios.post('/api/checkout', {
@@ -189,9 +195,12 @@ export default function CartPage() {
         });
         if (response.data.url) {
             window.location = response.data.url;
+            clearCart();
+        }
+        else {
+            alert("Some error occured")
         }
 
-        clearCart();
     }
 
     let total = 0;
@@ -210,6 +219,11 @@ export default function CartPage() {
 
 
     const payOnDelivery = async () => {
+        if (!name || !city || !email || !postalCode || !streetAddress || !country) {
+
+            alert("Fill all the details");
+            return;
+        }
 
         router.push(
             {
@@ -229,9 +243,14 @@ export default function CartPage() {
                     <title>NextZone - Cart</title>
 
                 </Head>
-                <Navbar />
-                <Center>
 
+                <Navbar />
+
+                <Center>
+                    <Toaster
+                        position="top-right"
+                        reverseOrder={false}
+                    />
                     <Box>
                         <div className="flex flex-col gap-10 ">
 
@@ -346,18 +365,22 @@ export default function CartPage() {
 
 
                                 <Input type="text"
+                                    required
                                     placeholder="Name"
                                     value={name}
                                     name="name"
                                     onChange={e => setName(e.target.value)} />
                                 <Input type="text"
                                     placeholder="Email"
+                                    required
                                     value={email}
+
                                     name="email"
                                     onChange={e => setEmail(e.target.value)} />
                                 <CityHolder>
                                     <Input type="text"
                                         placeholder="City"
+                                        required
                                         value={city}
                                         name="city"
                                         onChange={e => setCity(e.target.value)} />
@@ -365,16 +388,19 @@ export default function CartPage() {
                                         placeholder="Postal Code"
                                         value={postalCode}
                                         name="postalCode"
+                                        required
                                         onChange={e => setPostalCode(e.target.value)} />
                                 </CityHolder>
                                 <Input type="text"
                                     placeholder="Street Address"
                                     value={streetAddress}
+                                    required
                                     name="streetAddress"
                                     onChange={e => setStreetAddress(e.target.value)} />
                                 <Input type="text"
                                     placeholder="Country"
                                     value={country}
+                                    required
                                     name="country"
                                     onChange={e => setCountry(e.target.value)} />
 
