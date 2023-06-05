@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 import React, { useContext, useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast';
 import axios from 'axios';
+import Confetti from 'react-confetti'
 export default function Ordersuccess() {
     // const [confirm, setConfirm] = useState('');
     const router = useRouter();
@@ -35,6 +36,13 @@ export default function Ordersuccess() {
                 reverseOrder={false}
             />
             <Center>
+                {
+                    clicked ?
+                        <Confetti className=' mx-auto'
+                            width={1000}
+                            height={800}
+                        />
+                        : null}
                 <div className='flex flex-col gap-4 items-center justify-center min-h-[80vh]'>
 
                     <span className='mt-4 text-xl'>

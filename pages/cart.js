@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Footer from "@/components/Footer";
 import { Toaster, toast } from "react-hot-toast";
+import Confetti from 'react-confetti'
 const ColumnsWrapper = styled.div`
 display: grid;
 grid-template-columns: 1.2fr 0.8fr;
@@ -180,6 +181,20 @@ export default function CartPage() {
         clearCart();
         setProducts([]);
     }
+
+    let total = 0;
+    for (const productId of cartProducts) {
+        const price = products.find(p => p._id === productId)?.price || 0;
+        total += price;
+    }
+
+    let discountedPrice = 0;
+    for (let i = 0; i < products.length; i++) {
+
+        let p = products[i].price;
+        let d = products[i].discount
+        discountedPrice = discountedPrice + (p - (p * d) / 100);
+    }
     let id = loggedInUser?.data?._id;
     const goToPayment = async () => {
         if (!name || !city || !email || !postalCode || !streetAddress || !country) {
@@ -191,30 +206,18 @@ export default function CartPage() {
 
         const response = await axios.post('/api/checkout', {
             name, email, city, postalCode, streetAddress, country,
-            cartProducts,
+            cartProducts, discountedPrice
         });
         if (response.data.url) {
             window.location = response.data.url;
-            clearCart();
         }
         else {
             alert("Some error occured")
         }
 
+        clearCart();
     }
 
-    let total = 0;
-    for (const productId of cartProducts) {
-        const price = products.find(p => p._id === productId)?.price || 0;
-        total += price;
-    }
-    let discountedPrice = 0;
-    for (let i = 0; i < products.length; i++) {
-
-        let p = products[i].price;
-        let d = products[i].discount
-        discountedPrice = discountedPrice + (p - (p * d) / 100);
-    }
 
 
 
@@ -251,6 +254,10 @@ export default function CartPage() {
                         position="top-right"
                         reverseOrder={false}
                     />
+                    <Confetti className=' mx-auto'
+                        width={1000}
+                        height={800}
+                    />
                     <Box>
                         <div className="flex flex-col gap-10 ">
 
@@ -259,7 +266,7 @@ export default function CartPage() {
                                 <h1>Payment Successfull!</h1>
                                 <p>Thanks for your Order</p>
                             </div>
-                            <div className='text-gray-400 font-bold border-b-2 border-gray-400 px-4 py-2' >
+                            <div className='text-gray-400 font-bold border-b-2 border-gray-400 px-4 py-2 w-1/3' >
 
                                 <Link href={'/'}>Go To Home....</Link>
                             </div>
