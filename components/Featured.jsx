@@ -112,7 +112,7 @@ export default function Featured({ product }) {
                             </Column>
                             <Column>
 
-                                <StyledImage src="https://res.cloudinary.com/dt21djrjq/image/upload/v1683804256/mah5bgotqqq4szpxhos6.jpg" alt="featured image" />
+                                <StyledImage src="https://res.cloudinary.com/dt21djrjq/image/upload/v1691917562/yymttc4usxa1foowi9jq.jpg" alt="featured image" />
 
 
                             </Column>
