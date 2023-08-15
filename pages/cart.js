@@ -201,9 +201,7 @@ export default function CartPage() {
             alert("Fill all the details");
             return;
         }
-
         await axios.post('/api/order', { id, cartProducts });
-
         const response = await axios.post('/api/checkout', {
             name, email, city, postalCode, streetAddress, country,
             cartProducts, discountedPrice
